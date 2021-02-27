@@ -1,6 +1,6 @@
 from heapq import heappush, heappop
 
-# ノード数, エッジ数, 始点ノード
+# node, edge, start
 v, e, r = map(int, input().split())
 node = [[] for _ in range(v+1)]
 for i in range(e):
