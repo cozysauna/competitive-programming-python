@@ -1,4 +1,4 @@
-def to_int(x, base):# supports also negative base
+def to_int(x, base): # supports also negative base
     if not x: return ''
     r = (x%abs(base)+abs(base))%abs(base)
     x = (x-r)//base
