@@ -2,6 +2,8 @@ from sys import setrecursionlimit
 setrecursionlimit = 5000
 
 class art_bri():
+    # node = [[], [4, 2], [1, 3]] 1-4, 1-2, 2-1, 2-3,
+    # edge = [(1, 4), (1, 2), (1, 3)]...
     def __init__(self, n, node, edge):
         self.ords = [-1]*(n+1)
         self.lowlink = [-1]*(n+1)
