@@ -9,6 +9,7 @@ class Inv():
         while x < self.l+1:
             self.bit[x] += 1
             x += x & -x
+            
     def accum(self, x):
         x += 1
         ret =0
