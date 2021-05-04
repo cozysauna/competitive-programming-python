@@ -9,5 +9,3 @@ def prime_factors(n):
         for j in range(i, n+1, i): P[j] += 1
 
     return P[n] # or return P
-
-print(prime_factors(8))
