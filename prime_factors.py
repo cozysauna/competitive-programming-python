@@ -5,7 +5,9 @@
 def prime_factors(n):
     P = [0]*(n+1)
     for i in range(2, n+1):
-        if P[i] != 0: continue
+        if P[i]: continue
         for j in range(i, n+1, i): P[j] += 1
 
     return P[n] # or return P
+
+print(prime_factors(8))
