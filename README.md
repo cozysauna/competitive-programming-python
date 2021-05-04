@@ -20,9 +20,10 @@
 ## Number
   - 拡張ユークリッド (ext_gcd.py)
   - 最大公約数 (gcd.py)
-  - nCr組み合わせ(modp) (inverse.py)
   - 転倒数　(inversion.py)
+  - 最小公倍数 (lcm.py)
   - nCr組み合わせ (nCr.py)
+  - nCr組み合わせ (modp, 逆元) (inverse.py)
   - 循環小数 (reccuring_decimal.py)
   - 進数変換 (負の数対応) (to_int.py)
 
