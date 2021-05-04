@@ -16,3 +16,15 @@
   - トポロジカルソート (topological_sort.py)
   - 木の直径 (tree_diameter.py)
   - Union-Find (union_find.py)
+
+## Number
+  - 拡張ユークリッド (ext_gcd.py)
+  - 最大公約数 (gcd.py)
+  - nCr組み合わせ(modp) (inverse.py)
+  - 転倒数　(inversion.py)
+  - nCr組み合わせ (nCr.py)
+  - 循環小数 (reccuring_decimal.py)
+  - 進数変換 (負の数対応) (to_int.py)
+
+## Geometry
+  - 角度計算 (degree.py)
