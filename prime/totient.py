@@ -32,7 +32,7 @@ def totient_2(n):
         if K[i]: continue
         for j in range(i, n+1, i): 
             P[j].append(i)
-            K[j] += 1
+            K[j] = 1
     ret = []
     for i, E in enumerate(P):
         top, bot = i, 1
