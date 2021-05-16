@@ -1,11 +1,11 @@
 # 競技プログラミング用ライブラリ（Python）
 
 ## Prime
-  - 約数列挙 (divisors.py)    
+  - 約数 (divisors.py)    
   - 素因数分解 (prime_factorize.py)     
   - 素因数列挙 (prime_factors.py)    
   - 素数列挙（エラトステネスの篩）(sieve_of_eratosthenes.py)
-  
+  - 互いに素な自然数の個数＆列挙（オイラーのファイ関数）(totient.py)
   
 ## Graph
   - 関節点、橋　(articulation_point_and_bridge.py)
