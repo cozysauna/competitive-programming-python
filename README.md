@@ -2,6 +2,7 @@
 
 ## Prime
   - 約数 (divisors.py)    
+  - 素数判定 (is_prime.py)    
   - 素因数分解 (prime_factorize.py)     
   - 素因数列挙 (prime_factors.py)    
   - 素数列挙（エラトステネスの篩）(sieve_of_eratosthenes.py)
