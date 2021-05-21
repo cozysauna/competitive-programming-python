@@ -13,6 +13,7 @@
   - Binary Indexed Tree (bit.py)
   - 最短経路　ダイクストラ (dijkstra.py)
   - 最大フロー　Dinic法 (dinic.py)
+  - 最小全域木 プリム法 (prim.py)
   - 強連結成分 (scc.py)
   - トポロジカルソート (topological_sort.py)
   - 木の直径 (tree_diameter.py)
