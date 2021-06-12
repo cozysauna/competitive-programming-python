@@ -14,6 +14,7 @@
   - サイクル検知 (cycle.py)  
   - 最短経路　ダイクストラ (dijkstra.py)
   - 最大フロー　Dinic法 (dinic.py)
+  - 最長増加部分列 (lis.py)
   - 最小全域木 プリム法 (prim.py)
   - 強連結成分 (scc.py)
   - トポロジカルソート (topological_sort.py)
