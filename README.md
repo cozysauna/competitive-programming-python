@@ -29,7 +29,7 @@
   - nCr組み合わせ (nCr.py)
   - nCr組み合わせ (逆元対応) (nCr_inverse.py)
   - nPr順列 (逆元対応) (nPr_inverse.py)
-  - ランダムウォーク (+1:P回, -1:M回, 常にK以下) (random_walk.py)
+  - ランダムウォーク (random_walk.py)
   - 循環小数 (reccuring_decimal.py)
   - 進数変換 (負の数対応) (to_int.py)
 
