@@ -1,6 +1,7 @@
 # 競技プログラミング用ライブラリ（Python）
 
 ## Prime
+  - 互いに素なペアの個数 (coprime_pairs.py)    
   - 約数 (divisors.py)    
   - 素数判定 (is_prime.py)    
   - 素因数分解 (prime_factorize.py)     
@@ -26,6 +27,7 @@
   - 最大公約数 (gcd.py)
   - 転倒数　(inversion.py)
   - 最小公倍数 (lcm.py)
+  - メビウス関数 (mobius.py)
   - nCr組み合わせ (nCr.py)
   - nCr組み合わせ (逆元対応) (nCr_inverse.py)
   - nPr順列 (逆元対応) (nPr_inverse.py)
