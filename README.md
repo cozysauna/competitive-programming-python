@@ -19,6 +19,7 @@
   - 最長増加部分列 (lis.py)
   - 最小全域木 プリム法 (prim.py)
   - 強連結成分 (scc.py)
+  - セグメント木 (segtree.py)
   - トポロジカルソート (topological_sort.py)
   - 木の直径 (tree_diameter.py)
   - Union-Find (union_find.py))

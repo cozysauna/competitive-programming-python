@@ -1,29 +1,3 @@
-from collections import defaultdict, deque
-from itertools import permutations, combinations, product
-from functools import lru_cache
-def pprint(E): 
-  for e in E: print(e)
-from sys import setrecursionlimit, stdin
-setrecursionlimit(500000)
-readline = stdin.readline
-# @lru_cache(maxsize=None)
-INF = 10 ** 18
-MOD = 1000000007
-MOD2 = 998244353
-cnt = ans = tmp = 0
-yes, no = 'Yes', 'No'
-yay = None
-def I(): return int(readline())
-def S(): return readline()[:-1]
-def LI(): return list(map(int, readline().split()))
-def SPI(): return map(int, readline().split())
-def FIE(x): return [readline()[:-1] for _ in [0]*x]
-def ENU(x): return enumerate(x)
-def NODE(x): return [[] for _ in [0]*(x+1)]
-def ZERO(x): return [0]*x
-def ZEROS(y, x): return [[0]*x for _ in [0]*y]
-def ZEROSS(z, y, x): return [[[0]*x for _ in [0]*y] for _ in [0]*z]
-####################################################################
 def func(x, y): return max(x, y)
 e = 0
 
