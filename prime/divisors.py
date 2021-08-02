@@ -1,8 +1,8 @@
 def divs(n):
-    i, divs1, divs2 = 1,[],[]
+    i, d, dd = 1,[],[]
     while i*i <= n:
         if n % i == 0:
-            divs1.append(i)
-            if i != n // i: divs2.append(n//i)
+            d.append(i)
+            if i != n // i: dd.append(n//i)
         i += 1
-    return divs1 + divs2[::-1]
+    return d + dd[::-1]
