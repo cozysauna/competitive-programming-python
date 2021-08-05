@@ -40,4 +40,4 @@
 
 ## Geometry
   - 角度計算 (degree.py)
-  - 三点を通る円（中心,半径）(three_point_circle.py)
+  - 三点を通る円（中心・半径）(three_point_circle.py)
