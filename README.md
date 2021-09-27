@@ -26,6 +26,7 @@
   - 最短経路　ワーシャルフロイド (warshall_froyd.py)
 
 ## Number
+  - 二次元累積和 (cumsum2.py)
   - 拡張ユークリッド (ext_gcd.py)
   - 最大公約数 (gcd.py)
   - 転倒数　(inversion.py)
