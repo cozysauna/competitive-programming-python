@@ -43,3 +43,8 @@
   - 角度計算 (degree.py)
   - 回転 (rot.py)
   - 三点を通る円（中心・半径）(three_point_circle.py)
+
+## Matrix
+  - フィボナッチ数列　(fibonacci.py)
+  - 行列積 (mat_mul.py)
+  - 行列累乗 (mat_pow.py)
