@@ -1,6 +1,4 @@
-def extgcd(a, b):
-    if b:
-        d, y, x = extgcd(b, a % b)
-        y -= (a // b)*x
-        return d, x, y
-    return a, 1, 0
+def extgcd(a, b): # ax + by = d (x, y, d)
+    if not b: return (1, 0, a)
+    x, y, d = extgcd(b, a % b)
+    return y, x - a // b * y, d
