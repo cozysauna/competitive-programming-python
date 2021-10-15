@@ -27,6 +27,13 @@
   - 最短経路　ワーシャルフロイド (warshall_froyd.py)
 
 ## Number
+  - ソート (sort)
+    - バブルソート　(bubble_sort.py)
+    - 二次元ソート　(complicated_sort.py)
+    - 挿入ソート　(insertion_sort.py)
+    - クイックソート　(quick_sort.py)
+    - 乱択クイックソート　(random_quick_sort.py)
+    - 選択ソート　(selection_sort.py)
   - 二次元累積和 (cumsum2.py)
   - 拡張ユークリッド (ext_gcd.py)
   - 最大公約数 (gcd.py)
