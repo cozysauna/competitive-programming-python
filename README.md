@@ -31,6 +31,7 @@
     - バブルソート　(bubble_sort.py)
     - 二次元ソート　(complicated_sort.py)
     - 挿入ソート　(insertion_sort.py)
+    - マージソート　(merge_sort.py)
     - クイックソート　(quick_sort.py)
     - 乱択クイックソート　(random_quick_sort.py)
     - 選択ソート　(selection_sort.py)
