@@ -1,22 +1,18 @@
 from collections import deque
-n, e = map(int, input().split()) # node, edge
+def topological_sort(node, N):
+    incnt = [0] * N 
+    for nxs in node:
+        for nx in nxs:
+            incnt[nx] += 1
 
-node_go = [[] for _ in [0] * n]
-node_come = [[] for _ in [0] * n]
+    que = deque([i for i in range(N) if not incnt[i]])
+    ret = []
+    while que:
+        v = que.popleft()
+        ret.append(v)
+        for nx in node[v]:
+            incnt[nx] -= 1
+            if not incnt[nx]:
+                que.append(nx)
 
-for _ in [0] * e:
-    a, b = map(int, input().split())
-    node_go[a].append(b)
-    node_come[b].append(a)
-
-s = deque(i for i in range(n) if node_come[i] == [])
-
-ans = []
-while s:
-    v = s.popleft()
-    ans.append(v)
-    for nx_v in node_go[v]:
-        node_come[nx_v].remove(v)
-        if node_come[nx_v] == []: s.append(nx_v)
-
-print(ans)
+    return ret
