@@ -16,6 +16,7 @@
   - サイクル検知 (cycle.py)  
   - 最短経路　ダイクストラ (dijkstra.py)
   - 最大フロー　Dinic法 (dinic.py)
+  - 遅延セグメント木 (lazy_segtree.py)
   - 共通祖先 (lca.py)
   - 最長増加部分列 (lis.py)
   - 最小全域木 プリム法 (prim.py)
