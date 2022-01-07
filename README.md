@@ -28,6 +28,9 @@
   - Union-Find (union_find.py))
   - 最短経路　ワーシャルフロイド (warshall_froyd.py)
 
+## Marathon
+  - マラソンスニペット (marathon.py)
+
 ## Number
   - ソート (sort)
     - バブルソート　(bubble_sort.py)
