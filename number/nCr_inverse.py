@@ -1,12 +1,16 @@
-MOD = 10**9+7
-F, FI,INV = [1, 1], [1, 1], [0, 1]  
-n = 10**6
-for i in range(2, n + 1):
-    F.append((F[-1] * i) % MOD)
-    INV.append((-INV[MOD % i] * (MOD // i)) % MOD)
-    FI.append((FI[-1] * INV[-1]) % MOD)
+class comb():
+    def __init__(self, N, MOD):
+        self.N = N 
+        self.MOD = MOD 
+        self.F = [1, 1]
+        self.FI = [1, 1]
+        self.INV = [0, 1]
+        for i in range(2, self.N+1):
+            self.F.append((self.F[-1] * i) % MOD)
+            self.INV.append((-self.INV[MOD % i] * (MOD // i)) % MOD)
+            self.FI.append((self.FI[-1] * self.INV[-1]) % MOD)
 
-def nCr(n, r, MOD):
-    if r < 0 or n < r: return 0
-    r = min(r, n - r)
-    return F[n] * FI[r] * FI[n-r] % MOD
+    def get(self, n, r):
+        if r < 0 or n < r: return 0
+        r = min(r, n - r)
+        return self.F[n] * self.FI[r] * self.FI[n-r] % self.MOD
