@@ -1,7 +1,7 @@
 def is_prime(x):
-    if not x-1 or not x%2: return int(x==2)
+    if x == 1 or x % 2 == 0: return x == 2
     f = 3
-    while f*f <= x:
-        if not x%f: return 0
+    while f * f <= x:
+        if x % f == 0: return False 
         f += 2
-    return 1
+    return True 
