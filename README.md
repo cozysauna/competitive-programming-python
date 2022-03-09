@@ -41,6 +41,7 @@
     - 乱択クイックソート　(random_quick_sort.py)
     - 選択ソート　(selection_sort.py)
   - 二次元累積和 (cumsum2.py)
+  - 数字根 (digital_root.py)
   - ダブリング (doubling.py)
   - 拡張ユークリッド (ext_gcd.py)
   - 最大公約数 (gcd.py)
