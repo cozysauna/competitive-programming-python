@@ -8,6 +8,11 @@ class BIT():
             self.tree[i] += x
             i += i & -i
 
+    # A[i] = x 
+    def update(self, i, x):
+        old = self.get(i)
+        self.add(i, x - old)
+
     # A[1] + A[2] + ... + A[i]
     def sum(self, i):
         ret = 0
