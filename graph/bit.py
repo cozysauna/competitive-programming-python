@@ -35,3 +35,5 @@ class BIT():
             if self.sum(mid) == base: top = mid 
             else: bot = mid  
         return top
+
+    def get_all_sum(self): return self.sum(self.size)
