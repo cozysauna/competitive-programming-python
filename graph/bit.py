@@ -24,4 +24,14 @@ class BIT():
     # A[i]
     def get(self, i):
         return self.sum(i) - self.sum(i - 1)
-    
+
+    # max i (i <= x and 0 < A[i])
+    def less_than_x(self, x):
+        base = self.sum(x)
+        if base == 0: return None 
+        bot, top = 0, x 
+        while top - bot > 1:
+            mid = top + bot >> 1
+            if self.sum(mid) == base: top = mid 
+            else: bot = mid  
+        return top
