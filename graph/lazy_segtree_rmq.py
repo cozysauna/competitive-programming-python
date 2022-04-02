@@ -1,14 +1,16 @@
-func = max
-e = 0
+func = min
+e = 1 << 30
 
-class LazySegTree:
-    def __init__(self, func, e):
+class LazySegTree: #RMQ
+    # 0-indexed
+    def __init__(self, N, func, e):
         self.LV = (N-1).bit_length()
         self.CNT = 2**self.LV
         self.arr = [0]*(2*self.CNT)
         self.lazy = [None]*(2*self.CNT)
         self.func = func
         self.e = e
+        self.N = N 
 
     def gindex(self, l, r):
         L = (l + self.CNT) >> 1; R = (r + self.CNT) >> 1
@@ -26,6 +28,7 @@ class LazySegTree:
             self.lazy[2*i-1] = self.arr[2*i-1] = self.lazy[2*i] = self.arr[2*i] = v
             self.lazy[i-1] = None
 
+    # A[i] = x (l <= i < r)
     def update(self, l, r, x):
         *ids, = self.gindex(l, r)
         self.propagates(*ids)
@@ -55,3 +58,7 @@ class LazySegTree:
                 L += 1
             L >>= 1; R >>= 1
         return s
+
+    def get(self, x): return self.query(x, x + 1)
+
+    def display_all(self): print(*[self.get(i) for i in range(self.N)])
