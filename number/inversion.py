@@ -1,33 +1,35 @@
 class Inv():
-    def __init__(self, array):
-        self.arr = array
-        self.l = max(len(array), max(array))+1
-        self.bit = [0]*(self.l+1)
-        self.cnt = dict()
+    def __init__(self, N, A):
+        self.size = N
+        self.tree = [0] * (N + 1)
+        self.A = A 
+        if 0 in A: raise('make the array in 1-indexd')
+ 
+    # A[i] += x
+    def add(self, i, x):
+        while i <= self.size:
+            self.tree[i] += x
+            i += i & -i
 
-    def add(self, x):
-        x += 1
-        while x < self.l+1:
-            self.bit[x] += 1
-            x += x & -x
-            
-    def accum(self, x):
-        x += 1
-        s = x
+    # A[i] = x 
+    def update(self, i, x):
+        old = self.get(i)
+        self.add(i, x - old)
+
+    # A[1] + A[2] + ... + A[i]
+    def sum(self, i):
         ret = 0
-        while x:
-            ret += self.bit[x]
-            x -= x & -x
+        while i > 0:
+            ret += self.tree[i]
+            i -= i & -i
         return ret
+
+    # A[i]
+    def get(self, i): return self.sum(i) - self.sum(i - 1)
 
     def find(self):
-        ret = 0
-        for a in self.arr[::-1]:
-            ret += self.accum(a)
-            if a in self.cnt: 
-                ret -= self.cnt[a]
-                self.cnt[a] += 1
-            else:
-                self.cnt[a] = 1
-            self.add(a)
-        return ret
+        cnt = 0
+        for i, a in enumerate(self.A):
+            self.add(a, 1)
+            cnt += i + 1 - self.sum(a)
+        return cnt
