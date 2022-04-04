@@ -7,9 +7,9 @@ class WarshallFloyd:
             self.dist[b][a] = c
 
         self.prev = [[i] * N for i in range(N)]
-        for i in range(N):
-            for j in range(N):
-                for k in range(N):
+        for k in range(N):
+            for i in range(N):
+                for j in range(N):
                     if self.dist[i][j] > self.dist[i][k] + self.dist[k][j]:
                         self.dist[i][j] = self.dist[i][k] + self.dist[k][j]
                         self.prev[i][j] = self.prev[k][j]
