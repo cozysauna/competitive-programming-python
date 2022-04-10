@@ -49,3 +49,5 @@ class BIT():
         return top 
 
     def get_all_sum(self): return self.sum(self.size)
+
+    def display_all(self): print(*[self.get(i) for i in range(1, self.size + 1)])
