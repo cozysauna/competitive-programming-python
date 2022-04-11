@@ -57,6 +57,9 @@
   - 循環小数 (reccuring_decimal.py)
   - 進数変換 (負の数対応) (to_int.py)
 
+## String
+  - ローリングハッシュ (rollinghash.py)
+
 ## Geometry
   - 角度計算 (degree.py)
   - 回転 (rot.py)
