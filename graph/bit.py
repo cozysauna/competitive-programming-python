@@ -1,4 +1,4 @@
-class BIT():
+class BIT(): # 1-indexed
     def __init__(self, N):
         self.size = N
         self.tree = [0] * (N + 1)
@@ -9,7 +9,7 @@ class BIT():
             self.tree[i] += x
             i += i & -i
 
-    # A[i] = x 
+    # A[i] = x #TOO SLOW(Use add if possible)
     def update(self, i, x):
         old = self.get(i)
         self.add(i, x - old)
