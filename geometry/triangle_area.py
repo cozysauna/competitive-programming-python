@@ -1,0 +1,1 @@
+def triangle_area(ax, ay, bx, by, cx, cy): return abs((ax - cx) * (by - cy) - (bx - cx)* (ay - cy)) / 2 
