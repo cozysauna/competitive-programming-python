@@ -41,6 +41,7 @@
     - クイックソート　(quick_sort.py)
     - 乱択クイックソート　(random_quick_sort.py)
     - 選択ソート　(selection_sort.py)
+  - 中国剰余定理 (crt.py)
   - 二次元累積和 (cumsum2.py)
   - 数字根 (digital_root.py)
   - ダブリング (doubling.py)
@@ -64,6 +65,7 @@
   - 角度計算 (degree.py)
   - 回転 (rot.py)
   - 三点を通る円（中心・半径）(three_point_circle.py)
+  - 三角形の面積(triangle_area.py)
 
 ## Matrix
   - フィボナッチ数列　(fibonacci.py)
