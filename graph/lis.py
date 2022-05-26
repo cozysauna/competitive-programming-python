@@ -9,10 +9,9 @@ def lis(A):
     return len(table)
 
 def lis2(A): # slower lis
-    INF = 1 << 30
+    INF = 1 << 60
     table = [INF] * len(A)
     for a in A: 
         table[bisect_left(table, a)] = a
 
-    ans = bisect_left(table, INF)
-    return ans 
+    return bisect_left(table, INF)
