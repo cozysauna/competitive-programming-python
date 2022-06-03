@@ -13,6 +13,7 @@ class Dikstra:
         dist[start] = 0
         while hq:
             c, v = heappop(hq)
+            if done[v]: continue
             done[v] = 1
             for to, cost in self.node[v]: 
                 new_cost = dist[v] + cost
