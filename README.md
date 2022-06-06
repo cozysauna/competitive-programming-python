@@ -59,7 +59,8 @@
   - 進数変換 (負の数対応) (to_int.py)
 
 ## String
-  - ローリングハッシュ (rollinghash.py)
+  - レーベンシュタイン距離・編集距離 (rollinghash.py)
+  - ローリングハッシュ (rollinghash.py) 
 
 ## Geometry
   - 角度計算 (degree.py)
