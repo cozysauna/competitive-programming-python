@@ -27,7 +27,8 @@ class Inv():
     # A[i]
     def get(self, i): return self.sum(i) - self.sum(i - 1)
 
-    def find(self):
+    # Get Inversion
+    def find_inversion(self):
         cnt = 0
         for i, a in enumerate(self.A):
             self.add(a, 1)
