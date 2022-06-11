@@ -60,7 +60,7 @@
   - 進数変換 (負の数対応) (to_int.py)
 
 ## String
-  - レーベンシュタイン距離・編集距離 (rollinghash.py)
+  - レーベンシュタイン距離・編集距離 (levenshtein_distance.py)
   - ローリングハッシュ (rollinghash.py) 
 
 ## Geometry
