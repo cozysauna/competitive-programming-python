@@ -16,6 +16,7 @@
   - サイクル検知 (cycle.py)  
   - 最短経路　ダイクストラ (dijkstra.py)
   - 最大フロー　Dinic法 (dinic.py)
+  - オイラーツアー（LCA, Subtree) (euler_tour.py)
   - 遅延セグメント木RAQ (lazy_segtree_raq.py)
   - 遅延セグメント木RMQ (lazy_segtree_rmq.py)
   - 共通祖先 (lca.py)
