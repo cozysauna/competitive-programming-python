@@ -65,7 +65,6 @@
   - ローリングハッシュ (rollinghash.py) 
 
 ## Geometry
-  - 角度計算 (degree.py)
   - 回転 (rot.py)
   - 三点を通る円（中心・半径）(three_point_circle.py)
   - 三角形の面積(triangle_area.py)
