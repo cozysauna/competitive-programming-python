@@ -1,1 +1,1 @@
-def rot90(A): return [list(E) for E in zip(*A[::-1])]
+def rot(A): return [*map(list, zip(*A[::-1]))]
