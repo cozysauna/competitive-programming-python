@@ -1,7 +1,7 @@
 func = min
 e = 1 << 30
 
-class LazySegTree: #RMQ
+class LazySegTree: #RUQ()
     # 0-indexed
     def __init__(self, N, func, e):
         self.LV = (N-1).bit_length()

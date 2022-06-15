@@ -1,58 +1,45 @@
-# Dinic's algorithm
-from collections import deque
 class Dinic:
     def __init__(self, N):
         self.N = N
-        self.G = [[] for i in range(N)]
+        self.node = [[] for _ in range(N)]
 
-    def add_edge(self, fr, to, cap):
-        forward = [to, cap, None]
-        forward[2] = backward = [fr, 0, forward]
-        self.G[fr].append(forward)
-        self.G[to].append(backward)
+    def add_edge(self, x, y, capacity): # x -> y
+        self.node[x].append([y, capacity, len(self.node[y])]) # to, capacity, rev
+        self.node[y].append([x, 0, len(self.node[x]) - 1])
 
-    def add_multi_edge(self, v1, v2, cap1, cap2):
-        edge1 = [v2, cap1, None]
-        edge1[2] = edge2 = [v1, cap2, edge1]
-        self.G[v1].append(edge1)
-        self.G[v2].append(edge2)
+    def bfs(self, start):
+        self.level = [-1] * self.N 
+        self.level[start] = 0
+        que = deque([start])
+        while que:
+            v = que.popleft()
+            for to, capacity, _ in self.node[v]:
+                if capacity > 0 and self.level[to] < 0:
+                    self.level[to] = self.level[v] + 1
+                    que.append(to)
 
-    def bfs(self, s, t):
-        self.level = level = [None]*self.N
-        deq = deque([s])
-        level[s] = 0
-        G = self.G
-        while deq:
-            v = deq.popleft()
-            lv = level[v] + 1
-            for w, cap, _ in G[v]:
-                if cap and level[w] is None:
-                    level[w] = lv
-                    deq.append(w)
-        return level[t] is not None
-
-    def dfs(self, v, t, f):
-        if v == t:
-            return f
-        level = self.level
-        for e in self.it[v]:
-            w, cap, rev = e
-            if cap and level[v] < level[w]:
-                d = self.dfs(w, t, min(f, cap))
-                if d:
-                    e[1] -= d
-                    rev[1] += d
-                    return d
+    def dfs(self, s, t, flow):
+        if s == t: return flow 
+        for i in range(self.iter[s], len(self.node[s])):
+            self.iter[s] = i 
+            to, capacity, rev = self.node[s][i]
+            if capacity > 0 and self.level[s] < self.level[to]:
+                pre_flow = self.dfs(to, t, min(flow, capacity))
+                if pre_flow > 0:
+                    self.node[s][i][1] -= pre_flow
+                    self.node[to][rev][1] += pre_flow
+                    return pre_flow
         return 0
 
     def flow(self, s, t):
-        flow = 0
-        INF = 10**9 + 7
-        G = self.G
-        while self.bfs(s, t):
-            *self.it, = map(iter, self.G)
-            f = INF
-            while f:
-                f = self.dfs(s, t, INF)
-                flow += f
-        return flow
+        mx_flow = 0
+        while True:
+            self.bfs(s)
+            if self.level[t] < 0: break
+            self.iter = [0] * self.N 
+            while True:
+                f = self.dfs(s, t, 10 ** 18)
+                if f == 0: break 
+                mx_flow += f
+    
+        return mx_flow

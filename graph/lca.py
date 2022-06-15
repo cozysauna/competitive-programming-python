@@ -1,5 +1,5 @@
-class LCA():
-    def __init__(self, node, root=0):
+class LCA:
+    def __init__(self, node, root = 0):
         self.node = node
         self.root = root
         self.N = len(node)
@@ -37,4 +37,5 @@ class LCA():
         for i in range(self.logn - 1, -1, -1):
             pu, pv = self.parent[i][u], self.parent[i][v]
             if pu != pv: u, v = pu, pv
+
         return self.parent[0][u]
