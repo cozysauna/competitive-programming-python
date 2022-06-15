@@ -1,4 +1,4 @@
-class Doubling():
+class Doubling:
     def __init__(self, A):
         self.logK = 65
         N = len(A)

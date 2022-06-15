@@ -1,7 +1,7 @@
-class SegTree2D():
-    def __init__(self, ls2D, func, e):
-        N = len(ls2D)
-        M = len(ls2D[0])
+class SegTree2D:
+    def __init__(self, arrays, func, e):
+        N = len(arrays)
+        M = len(arrays[0])
         self.e = e
         self.func = func
         self.N = N
@@ -13,21 +13,24 @@ class SegTree2D():
         self.dat = [[0] * (2**(self.KM + 1)) for i in range(2**(self.KN + 1))]
         for i in range(self.N):
             for j in range(self.M):
-                self.dat[self.N2 + i][self.M2 + j] = ls2D[i][j]
+                self.dat[self.N2 + i][self.M2 + j] = arrays[i][j]
         self.build()
 
     def build(self):
         for j in range(self.M):
             for i in range(self.N2 - 1, 0, -1):
                 self.dat[i][self.M2 + j] = self.func(self.dat[i << 1][self.M2 + j], self.dat[i << 1 | 1][self.M2 + j])
-        for i in range(2**(self.KN + 1)):
+
+        for i in range(2 ** (self.KN + 1)):
             for j in range(self.M2 - 1, 0, -1):
                 self.dat[i][j] = self.func(self.dat[i][j << 1], self.dat[i][j << 1 | 1])
 
-    def query(self, Lx, Rx, Ly, Ry):
-        #     Ly  Ry
+    def query(self, Lx, Ly, Rx, Ry):
+        # [Lx, Ly) and [Rx, Ry)
+        #     Ly     Ry
         # Lx  ######
-        # Rx  ######
+        #     ######
+        # Rx
         Lx += self.N2
         Rx += self.N2
         Ly += self.M2

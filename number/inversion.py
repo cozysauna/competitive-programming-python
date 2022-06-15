@@ -1,22 +1,16 @@
-class Inv():
+class Inv:
     def __init__(self, N, A):
         self.size = N
         self.tree = [0] * (N + 1)
-        self.A = A 
-        if 0 in A: raise('make the array in 1-indexd')
- 
-    # A[i] += x
+        if 0 in A: 
+            for i in range(N): A[i] += 1
+        self.A = A
+
     def add(self, i, x):
         while i <= self.size:
             self.tree[i] += x
             i += i & -i
 
-    # A[i] = x 
-    def update(self, i, x):
-        old = self.get(i)
-        self.add(i, x - old)
-
-    # A[1] + A[2] + ... + A[i]
     def sum(self, i):
         ret = 0
         while i > 0:
@@ -24,11 +18,7 @@ class Inv():
             i -= i & -i
         return ret
 
-    # A[i]
-    def get(self, i): return self.sum(i) - self.sum(i - 1)
-
-    # Get Inversion
-    def find_inversion(self):
+    def get(self):
         cnt = 0
         for i, a in enumerate(self.A):
             self.add(a, 1)
