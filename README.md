@@ -42,6 +42,7 @@
     - クイックソート　(quick_sort.py)
     - 乱択クイックソート　(random_quick_sort.py)
     - 選択ソート　(selection_sort.py)
+  - 進数変換 (base_conversion.py)
   - 座標圧縮 (compress.py)
   - 中国剰余定理 (crt.py)
   - 累積和 (cumsum.py)
