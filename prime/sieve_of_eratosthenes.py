@@ -1,7 +1,3 @@
-# primes less than N
-# sieve(10) = 2, 3, 5, 7
-# O(NloglogN)
-
 def sieve(N): 
     P = []
     check = [1] * (N + 1)

@@ -1,6 +1,6 @@
-# l < x, y <= r, gcd(x, y) = 1
+# gcd(x, y) = 1(l < x, y, <= r)
 def coprime_pairs(l, r):
-    ret = (r - l)**2
+    ret = (r - l) ** 2
     R = r
     while R > 1:
         a, b = l // R, r // R

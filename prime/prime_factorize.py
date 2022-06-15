@@ -1,35 +1,15 @@
-def prime_fac(n):
-    from collections import defaultdict
+from collections import defaultdict
+
+def prime_factorize(N):
     p = defaultdict(int)
-    while n % 2 == 0:
+    while N % 2 == 0:
         p[2] += 1
-        n //= 2
+        N //= 2
     f = 3
-    while f * f <= n:
-        if n % f == 0:
+    while f * f <= N:
+        if N % f == 0:
             p[f] += 1
-            n //= f
+            N //= f
         else: f += 2
-    if n != 1: p[n] += 1
+    if N != 1: p[N] += 1
     return p
-
-print(prime_fac(10))
-
-import collections
-def prime_fac2(n):
-    p = []
-    while n % 2 == 0:
-        p.append(2)
-        n //= 2
-    f = 3
-    while f * f <= n:
-        if n % f == 0:
-            p.append(f)
-            n //= f
-        else: f += 2
-    if n != 1: p.append(n)
-    return p
-
-c = collections.Counter(prime_fac2(24))
-s = c.values()
-k = c.keys()

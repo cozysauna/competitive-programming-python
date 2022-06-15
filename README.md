@@ -11,8 +11,7 @@
   
 ## Graph
   - 最短経路　ベルマンフォード　(bellman_ford.py)
-  - Binary Indexed Tree (bit.py)
-  - サイクル検知 (cycle.py)  
+  - Binary Indexed Tree (bit.py)  
   - 最短経路　ダイクストラ (dijkstra.py)
   - 最大フロー　Dinic法 (dinic.py)
   - オイラーツアー（LCA, Subtree) (euler_tour.py)
@@ -56,7 +55,6 @@
   - nCr組み合わせ (逆元対応) (nCr_inverse.py)
   - nPr順列 (逆元対応) (nPr_inverse.py)
   - 部分和問題 (partial_sum.py)  
-  - ランダムウォーク (random_walk.py)
   - 循環小数 (reccuring_decimal.py)
   - 進数変換 (負の数対応) (to_int.py)
 
