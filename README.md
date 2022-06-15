@@ -10,7 +10,6 @@
   - 互いに素な自然数の個数＆列挙（オイラーのファイ関数）(totient.py)
   
 ## Graph
-  - 関節点、橋　(articulation_point_and_bridge.py)
   - 最短経路　ベルマンフォード　(bellman_ford.py)
   - Binary Indexed Tree (bit.py)
   - サイクル検知 (cycle.py)  
@@ -21,6 +20,7 @@
   - 遅延セグメント木RMQ (lazy_segtree_rmq.py)
   - 共通祖先 (lca.py)
   - 最長増加部分列 (lis.py)
+  - 関節点、橋　(lowlink.py)
   - 最小全域木 プリム法 (prim.py)
   - 削除可能優先度付きキュー (removable_heapq.py)
   - 強連結成分 (scc.py)
