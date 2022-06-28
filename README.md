@@ -42,7 +42,6 @@
     - クイックソート　(quick_sort.py)
     - 乱択クイックソート　(random_quick_sort.py)
     - 選択ソート　(selection_sort.py)
-  - 部分集合 (subset.py)
   - 進数変換 (base_conversion.py)
   - 座標圧縮 (compress.py)
   - 中国剰余定理 (crt.py)
@@ -60,6 +59,7 @@
   - nPr順列 (逆元対応) (nPr_inverse.py)
   - 部分和問題 (partial_sum.py)  
   - 循環小数 (reccuring_decimal.py)
+  - 部分集合 (subset.py)
   - 進数変換 (負の数対応) (to_int.py)
 
 ## String
@@ -72,6 +72,7 @@
   - 三角形の面積(triangle_area.py)
 
 ## Matrix
+  - アフィン変換　(affine_transformation.py)
   - フィボナッチ数列　(fibonacci.py)
   - 行列積 (mat_mul.py)
   - 行列累乗 (mat_pow.py)
