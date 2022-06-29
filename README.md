@@ -20,6 +20,7 @@
   - 共通祖先 (lca.py)
   - 最長増加部分列 (lis.py)
   - 関節点、橋　(lowlink.py)
+  - 最小費用流問題　(min_cost_flow.py)
   - 最小全域木 プリム法 (prim.py)
   - 削除可能優先度付きキュー (removable_heapq.py)
   - 強連結成分 (scc.py)
