@@ -67,9 +67,12 @@
 ## String
   - レーベンシュタイン距離・編集距離 (levenshtein_distance.py)
   - ローリングハッシュ (rollinghash.py) 
+  - ランレングス圧縮 (run_length_encoding.py) 
 
 ## Geometry
   - 回転 (rot.py)
+  - 角度回転 (rot_degree.py)
+  - ラジアン回転 (rot_radian.py)
   - 三点を通る円（中心・半径）(three_point_circle.py)
   - 三角形の面積(triangle_area.py)
 
