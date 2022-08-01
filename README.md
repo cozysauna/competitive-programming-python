@@ -71,6 +71,8 @@
   - ランレングス圧縮 (run_length_encoding.py) 
 
 ## Geometry
+  - 二点を通る直線の式 (line_equation.py)
+  - 点と直線の距離 (point_line_distance.py)
   - 回転 (rot.py)
   - 角度回転 (rot_degree.py)
   - ラジアン回転 (rot_radian.py)
