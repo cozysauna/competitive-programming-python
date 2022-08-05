@@ -23,6 +23,7 @@
   - 最小費用流問題　(min_cost_flow.py)
   - 最小全域木 プリム法 (prim.py)
   - 削除可能優先度付きキュー (removable_heapq.py)
+  - 全方位木DP (rerooting.py)
   - 強連結成分 (scc.py)
   - セグメント木 (segtree.py)
   - 二次元セグメント木 (segtree_2d.py)
