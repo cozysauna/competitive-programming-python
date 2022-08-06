@@ -27,6 +27,7 @@
   - 強連結成分 (scc.py)
   - セグメント木 (segtree.py)
   - 二次元セグメント木 (segtree_2d.py)
+  - Slope Trick (slope_trick.py)
   - トポロジカルソート (topological_sort.py)
   - 木の直径 (tree_diameter.py)
   - Union-Find (union_find.py))
