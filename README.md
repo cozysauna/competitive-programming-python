@@ -12,6 +12,7 @@
 ## Graph
   - 最短経路　ベルマンフォード　(bellman_ford.py)
   - Binary Indexed Tree (bit.py)  
+  - 2次元BIT (bit_2d.py)  
   - 最短経路　ダイクストラ (dijkstra.py)
   - 最大フロー　Dinic法 (dinic.py)
   - オイラーツアー（LCA, Subtree) (euler_tour.py)
