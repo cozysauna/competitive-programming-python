@@ -1,5 +1,8 @@
 # 競技プログラミング用ライブラリ（Python）
 
+## Array
+  - ソート配列の二分探索 (sorted_array.py)    
+
 ## Prime
   - 互いに素なペアの個数 (coprime_pairs.py)    
   - 約数 (divisors.py)    
