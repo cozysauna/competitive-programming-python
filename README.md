@@ -77,6 +77,7 @@
   - レーベンシュタイン距離・編集距離 (levenshtein_distance.py)
   - ローリングハッシュ (rollinghash.py) 
   - ランレングス圧縮 (run_length_encoding.py) 
+  - Z algorithm (z_algorithm.py) 
 
 ## Geometry
   - 偏角ソート (degree_sort.py)
