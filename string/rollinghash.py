@@ -1,5 +1,5 @@
 class RollingHash:
-    def __init__(self, string, base = 1237, mod = (1 << 61) - 1):
+    def __init__(self, string, base = 1237, mod = 10 ** 9 + 7):
         N = len(string)
         self.base = base
         self.mod = mod 
