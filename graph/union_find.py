@@ -26,12 +26,12 @@ class UnionFind:
 
     def roots(self): return [i for i, x in enumerate(self.P) if x < 0]
 
-    def group_count(self): return len(self.roots())
+    def group_cnt(self): return len(self.roots())
 
-    def all_group_members(self):
-        from collections import defaultdict
-        G = defaultdict(list)
-        for member in range(self.n): G[self.find(member)].append(member)
-        return G
-
-    def __str__(self): return '\n'.join(f'{r}: {m}' for r, m in self.all_group_members().items())
+    def group_and_members(self):
+        group_info = dict()
+        for member in range(self.n): 
+            g_id = self.find(member)
+            if g_id not in group_info: group_info[g_id] = []
+            group_info[g_id].append(member)
+        return group_info
