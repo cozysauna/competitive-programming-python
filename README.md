@@ -36,6 +36,7 @@
   - 木の直径 (tree_diameter.py)
   - Union-Find (union_find.py))
   - 最短経路　ワーシャルフロイド (warshall_froyd.py)
+  - 重み付きUnion-Find (weighted_union_find.py)
 
 ## Marathon
   - マラソンスニペット (marathon.py)
