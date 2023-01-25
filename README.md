@@ -51,6 +51,7 @@
     - 乱択クイックソート　(random_quick_sort.py)
     - 選択ソート　(selection_sort.py)
   - 進数変換 (base_conversion.py)
+  - ビットセット (bitset.py)
   - カタラン数 (catalan_number.py)
   - 座標圧縮 (compress.py)
   - 中国剰余定理 (crt.py)
