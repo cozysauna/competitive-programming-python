@@ -8,16 +8,16 @@ class Bitset:
         bit演算子 and, or, xor 対応
     '''
     def __init__(self, N):
-        self.bit_size = 63
-        self.bits_size = (N + self.bit_size - 1) // self.bit_size 
+        self.bit_length = 63
+        self.bits_size = (N + self.bit_length - 1) // self.bit_length 
         self.bits = self.bits_size * [0]
         self.N = N
 
     def add(self, x):
-        self.bits[x // self.bit_size] |= 1 << (x % self.bit_size)
+        self.bits[x // self.bit_length] |= 1 << (x % self.bit_length)
 
     def sub(self, x):
-        self.bits[x // self.bit_size] &= ~(1 << (x % self.bit_size))
+        self.bits[x // self.bit_length] &= ~(1 << (x % self.bit_length))
 
     def count(self):
         cnt = 0
@@ -57,4 +57,4 @@ class Bitset:
         return _bitset
 
     def __getitem__(self, x):
-        return self.bits[x // self.bit_size] >> (x % self.bit_size) & 1
+        return self.bits[x // self.bit_length] >> (x % self.bit_length) & 1
