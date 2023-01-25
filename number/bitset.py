@@ -5,7 +5,7 @@ class Bitset:
         sub():   xビット目を0にする
         count(): 1となるビットの数を取得
         self[x]: xビット目を取得
-        bit演算子 &, | 対応
+        bit演算子 and, or, xor 対応
     '''
     def __init__(self, N):
         self.bit_size = 63
@@ -45,6 +45,14 @@ class Bitset:
         _bits = _bitset.bits
         for i in range(self.bits_size):
             _bits[i] = self.bits[i] | other.bits[i]
+
+        return _bitset
+
+    def __xor__(self, other):
+        _bitset = Bitset(self.N)
+        _bits = _bitset.bits
+        for i in range(self.bits_size):
+            _bits[i] = self.bits[i] ^ other.bits[i]
 
         return _bitset
 
