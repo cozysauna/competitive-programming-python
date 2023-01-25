@@ -1,39 +1,44 @@
 class Rerooting:
-    def __init__(self, N, node, e):
-        self.dp = [None] * N
+    def __init__(self, N, node, e, func, start = 0):
+        self.dp = [[e] * len(node[i]) for i in range(N)]
         self.node = node 
-        self.e = e
-        self.ans = [0] * N
+        self.e = e 
+        self.func = func
+        self.start = start
 
-    # Abstraction
-    def merge(self, a, b): return max(a, b)
-    def fin(self, a): return a + 1
-    def build(self, start = 0, initial_cost = 0):
-        self._dfs1(start)
-        self._dfs2(start, initial_cost)
+        self._dfs(x = start)
+        self._bfs(x = start)
 
-    def _dfs1(self, v, p = -1):
-        self.dp[v] = [self.e]  * len(self.node[v])
-        ret = self.e
-        for i, nx in enumerate(self.node[v]):
+    def _dfs(self, x = 0, p = -1):
+        k = self.e 
+        dpx = self.dp[x]
+        for i, nx in enumerate(self.node[x]):
             if nx == p: continue
-            self.dp[v][i] = self._dfs1(nx, v)
-            ret = self.merge(ret, self.dp[v][i])
-        return self.fin(ret)
+            # 変更点
+            dpx[i] = self._dfs(nx, x) + 1
+            # 変更点
+            k = self.func(k, dpx[i])
+        return k
 
-    def _dfs2(self, v, cost, p = -1):
-        size = len(self.node[v])
+    def _bfs(self, x = 0, p = -1, pre_cost = 0):
+        edge_size = len(self.node[x])
+        dpx = self.dp[x]
+        for i, nx in enumerate(self.node[x]):
+            if nx == p:
+                # 前の部分木の情報を使いdpテーブルを更新する、変更点
+                dpx[i] = pre_cost + 1
 
-        for i, nx in enumerate(self.node[v]):
-            if nx == p: self.dp[v][i] = cost 
+        cum_L = [self.e] * (edge_size + 1)
+        cum_R = [self.e] * (edge_size + 1)
 
-        cumL = [self.e] * (size + 1)
-        cumR = [self.e] * (size + 1)
-        for i in range(size): 
-            cumL[i + 1] = self.merge(cumL[i], self.dp[v][i])
-        for i in range(size)[::-1]:
-            cumR[i] = self.merge(cumR[i + 1], self.dp[v][i])
-            
-        for i, nx in enumerate(self.node[v]):
-            if nx == p: continue
-            self._dfs2(nx, self.fin(self.merge(cumL[i], cumR[i + 1])), v)
+        # 変更点
+        for i in range(edge_size):
+            cum_L[i + 1] = self.func(cum_L[i], dpx[i])
+        for i in range(edge_size)[::-1]:
+            cum_R[i] = self.func(cum_R[i + 1], dpx[i])
+
+
+        for i, nx in enumerate(self.node[x]):
+            if nx != p:
+                # 変更点
+                self._bfs(nx, x, self.func(cum_L[i], cum_R[i + 1]))
