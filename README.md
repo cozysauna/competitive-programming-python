@@ -90,6 +90,7 @@
   - ラジアン回転 (rot_radian.py)
   - 三点を通る円（中心・半径）(three_point_circle.py)
   - 三角形の面積(triangle_area.py)
+  - ２点の成す角度(two_points_rad.py)
 
 ## Matrix
   - アフィン変換　(affine_transformation.py)
