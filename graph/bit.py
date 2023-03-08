@@ -20,14 +20,13 @@
         print()         : Aを表示
 '''
 
-class BIT(): # 1-indexed
+class BIT():
     def __init__(self, N):
         self.N = N
         self.data = [0] * (N + 1)
         self.A = [0] * (N + 1)
         self.all_sum = 0
  
-    # A[i] += x
     def add(self, i, x):
         self.all_sum += x
         self.A[i] += x
@@ -35,10 +34,8 @@ class BIT(): # 1-indexed
             self.data[i] += x
             i += i & -i
 
-    # A[i] = x 
     def update(self, i, x): self.add(i, x - self.A[i])
 
-    # A[1] + A[2] + ... + A[i]
     def sum(self, i):
         ret = 0
         while i > 0:
@@ -46,10 +43,8 @@ class BIT(): # 1-indexed
             i -= i & -i
         return ret
     
-    # A[l] + A[l + 1] + ... + A[r]
     def range_sum(self, l, r): return self.sum(r) - self.sum(l - 1)
 
-    # A[i]
     def get(self, i): return self.A[i]
     
     def less_than_x(self, x): return self.lower_bound(self.sum(x))
