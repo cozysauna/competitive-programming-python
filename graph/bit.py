@@ -67,5 +67,5 @@ class BIT():
     def get_all_sum(self): return self.all_sum
 
     def print(self):
-        print("[index]", " ".join(map(str, [i for i in range(1, N + 1)])))
-        print("[value]", " ".join(map(str, [self.A[i] for i in range(1, N + 1)])))
+        print("[index]", " ".join(map(str, [i for i in range(1, self.N + 1)])))
+        print("[value]", " ".join(map(str, [self.A[i] for i in range(1, self.N + 1)])))
