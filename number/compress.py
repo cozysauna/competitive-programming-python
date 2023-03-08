@@ -1,15 +1,15 @@
 class Compress:
-    def __init__(self, A, indexed = 0):
+    def __init__(self, A, start = 0):
         self.compress = {}
         self.original = {}
-        for i, e in enumerate(sorted(set(A))):
-            self.compress[e] = i + indexed
-            self.original[i + indexed] = e 
+        for i, e in enumerate(sorted(set(A)), start):
+            self.compress[e] = i
+            self.original[i] = e 
 
-    def get_compress(self, A): 
-        if type(A) == list: return [self.compress[e] for e in A]
-        if type(A) == int: return self.compress[A]
+    # 座圧後の要素を取得する
+    def __getitem__(self, x):
+        return self.compress[x]
 
-    def get_original(self, A): 
-        if type(A) == list: return [self.original[e] for e in A]
-        if type(A) == int: return self.original[A]
+    # 座圧前の要素を取得する
+    def rev(self, x):
+        return self.original[x]
