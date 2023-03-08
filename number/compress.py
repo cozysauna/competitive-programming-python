@@ -13,3 +13,4 @@ class Compress:
     # 座圧前の要素を取得する
     def rev(self, x):
         return self.original[x]
+        
