@@ -1,64 +1,81 @@
-func = min
-e = 1 << 30
-
-class LazySegTree: #RUQ()
-    # 0-indexed
+# Range Update Query (0-indexed)
+class RUQ:
     def __init__(self, N, func, e):
-        self.LV = (N-1).bit_length()
-        self.CNT = 2**self.LV
-        self.arr = [0]*(2*self.CNT)
-        self.lazy = [None]*(2*self.CNT)
+        self.N = N 
         self.func = func
         self.e = e
-        self.N = N 
+        self.height = (N - 1).bit_length()
+        self.num = 1 << self.height
+        self.data = [0] * (2 * self.num)
+        self.lazy = [None] * (2 * self.num)
 
     def gindex(self, l, r):
-        L = (l + self.CNT) >> 1; R = (r + self.CNT) >> 1
-        lc = 0 if l % 2 else (L & -L).bit_length()
-        rc = 0 if r % 2 else (R & -R).bit_length()
-        for i in range(self.LV):
+        L = (l + self.num) >> 1
+        R = (r + self.num) >> 1
+        lc = 0 if l & 1 else (L & -L).bit_length()
+        rc = 0 if r & 1 else (R & -R).bit_length()
+        for i in range(self.height):
             if rc <= i: yield R
             if L < R and lc <= i: yield L
-            L >>= 1; R >>= 1
+            L >>= 1
+            R >>= 1
 
-    def propagates(self, *ids):
+    def propagate(self, *ids):
         for i in ids[::-1]:
-            v = self.lazy[i-1]
+            v = self.lazy[i - 1]
             if v == None: continue
-            self.lazy[2*i-1] = self.arr[2*i-1] = self.lazy[2*i] = self.arr[2*i] = v
-            self.lazy[i-1] = None
+            self.lazy[2 * i - 1] = v
+            self.data[2 * i - 1] = v
+            self.lazy[2 * i] = v
+            self.data[2 * i] = v
+            self.lazy[i - 1] = None
 
-    # A[i] = x (l <= i < r)
+    # A[i] = x [l, r)
     def update(self, l, r, x):
         *ids, = self.gindex(l, r)
-        self.propagates(*ids)
+        self.propagate(*ids)
 
-        L = self.CNT + l; R = self.CNT + r
+        L = self.num + l
+        R = self.num + r
         while L < R:
-            if R % 2:
+            if R & 1:
                 R -= 1
-                self.lazy[R-1] = self.arr[R-1] = x
-            if L % 2:
-                self.lazy[L-1] = self.arr[L-1] = x
+                self.lazy[R - 1] = x
+                self.data[R - 1] = x
+
+            if L & 1:
+                self.lazy[L - 1] = x
+                self.data[L - 1] = x
                 L += 1
-            L >>= 1; R >>= 1
+
+            L >>= 1
+            R >>= 1
+
         for i in ids:
-            self.arr[i-1] = self.func(self.arr[2*i-1], self.arr[2*i])
+            self.data[i - 1] = self.func(self.data[2 * i - 1], self.data[2 * i])
 
     def query(self, l, r):
-        self.propagates(*self.gindex(l, r))
-        L = self.CNT + l; R = self.CNT + r
-        s = self.e
+        self.propagate(*self.gindex(l, r))
+
+        L = self.num + l
+        R = self.num + r
+        ret = self.e
         while L < R:
-            if R % 2:
+            if R & 1:
                 R -= 1
-                s = self.func(s, self.arr[R-1])
-            if L % 2:
-                s = self.func(s, self.arr[L-1])
+                ret = self.func(ret, self.data[R - 1])
+
+            if L & 1:
+                ret = self.func(ret, self.data[L - 1])
                 L += 1
-            L >>= 1; R >>= 1
-        return s
+
+            L >>= 1
+            R >>= 1
+
+        return ret
 
     def get(self, x): return self.query(x, x + 1)
 
-    def display_all(self): print(*[self.get(i) for i in range(self.N)])
+    def print(self):
+        print("[index]", " ".join(map(str, [i for i in range(1, self.N + 1)])))
+        print("[value]", " ".join(map(str, [self.get(i) for i in range(1, self.N + 1)])))
