@@ -25,6 +25,7 @@
   - 最長増加部分列 (lis.py)
   - 関節点、橋　(lowlink.py)
   - 最小費用流問題　(min_cost_flow.py)
+  - Mo's algorithm　(mos.py)
   - 最小全域木 プリム法 (prim.py)
   - 削除可能優先度付きキュー (removable_heapq.py)
   - 全方位木DP (rerooting.py)
@@ -34,7 +35,7 @@
   - Slope Trick (slope_trick.py)
   - トポロジカルソート (topological_sort.py)
   - 木の直径 (tree_diameter.py)
-  - Union-Find (union_find.py))
+  - Union-Find (union_find.py)
   - 最短経路　ワーシャルフロイド (warshall_froyd.py)
   - 重み付きUnion-Find (weighted_union_find.py)
 
