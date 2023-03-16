@@ -54,6 +54,7 @@
   - 進数変換 (base_conversion.py)
   - ビットセット (bitset.py)
   - カタラン数 (catalan_number.py)
+  - Convex Hull Trick (cht.py)
   - 座標圧縮 (compress.py)
   - 中国剰余定理 (crt.py)
   - 累積和 (cumsum.py)
