@@ -1,157 +1,221 @@
 class RMQ:
     def __init__(self, array):
-        N = len(array)
-        self.e = 10 ** 18
-        self.num = 1 << (N - 1).bit_length()
-        self.tree = [self.e] * 2 * self.num
-        self.index = [None] * 2 * self.num 
-        for i in range(N):
-            self.tree[self.num + i] = array[i]
-            self.index[self.num + i] = i 
+        n = len(array)
+        self.e = 1 << 30
+        self.num = 1 << (n - 1).bit_length()
+        self.tree = [(self.e, -1)] * 2 * self.num
+        for i in range(n):
+            self.tree[self.num + i] = (array[i], i)
 
         for i in range(self.num - 1, 0, -1):
-            if self.tree[2 * i] <= self.tree[2 * i + 1]:
-                self.tree[i] = self.tree[2 * i]
-                self.index[i] = self.index[2 * i]
-            else:
-                self.tree[i] = self.tree[2 * i + 1]
-                self.index[i] = self.index[2 * i + 1]
+            self.tree[i] = min(self.tree[2 * i], self.tree[2 * i + 1])
 
-    def query(self, l, r): #(mn, idx)
+    def update(self, k, x): # A[k] = x
+        k += self.num
+        self.tree[k] = (x, k) 
+        while k > 1:
+            self.tree[k >> 1] = min(self.tree[k], self.tree[k ^ 1])
+            k >>= 1
+
+    def query(self, l, r): # [l, r)
+        ret = (self.e, -1)
         l += self.num
         r += self.num
-        mn, idx = self.e, None
 
         while l < r:
             if l & 1:
-                if mn >= self.tree[l]:
-                    mn = self.tree[l]
-                    idx = self.index[l]
+                ret = min(ret, self.tree[l])
                 l += 1
             if r & 1:
-                if mn >= self.tree[r - 1]:
-                    mn = self.tree[r - 1]
-                    idx = self.index[r - 1]
-
+                ret = min(ret, self.tree[r - 1])
             l >>= 1
             r >>= 1
-        return mn, idx 
+        
+        idx = ret[1]
+        assert idx >= 0
+        return idx
 
-class RSQ:
-    def __init__(self, array):
-        N = len(array)
-        self.e = 0
-        self.num = 1 << (N - 1).bit_length()
-        self.tree = [self.e] * 2 * self.num
-        for i in range(N): self.tree[self.num + i] = array[i]
-        for i in range(self.num - 1, 0, -1): self.tree[i] = self.tree[2 * i] + self.tree[2 * i + 1]
+class BIT:
+    def __init__(self, N):
+        self.N = N
+        self.data = [0] * (N + 1)
+        self.A = [0] * (N + 1)
+        self.all_sum = 0
+ 
+    def add(self, i, x):
+        self.all_sum += x
+        self.A[i] += x
+        while i <= self.N:
+            self.data[i] += x
+            i += i & -i
 
-    def query(self, l, r): # [l, r)
-        ret = self.e
-        l += self.num
-        r += self.num
-        while l < r:
-            if l & 1: ret += self.tree[l]; l += 1
-            if r & 1: ret += self.tree[r - 1]
-            l >>= 1
-            r >>= 1
+    def update(self, i, x): self.add(i, x - self.A[i])
+
+    def sum(self, i):
+        ret = 0
+        while i > 0:
+            ret += self.data[i]
+            i -= i & -i
         return ret
+    
+    def range_sum(self, l, r): return self.sum(r) - self.sum(l - 1)
+
+    def get(self, i): return self.A[i]
+    
+    def less_than_x(self, x): return self.lower_bound(self.sum(x))
+    
+    def more_than_x(self, x): return self.lower_bound(self.sum(x - 1) + 1)
+
+    def lower_bound(self, w):
+        if w <= 0: return None
+        if w > self.get_all_sum(): return None
+        i = 0
+        size = 1 << self.N.bit_length()
+        while size > 0:
+            if i + size <= self.N and self.data[i + size] < w:
+                w -= self.data[i + size]
+                i += size 
+            size >>= 1
+
+        return i + 1
+
+    def get_all_sum(self): return self.all_sum
+
+    def print(self):
+        print("[index]", " ".join(map(str, [i for i in range(1, self.N + 1)])))
+        print("[value]", " ".join(map(str, [self.A[i] for i in range(1, self.N + 1)])))
 
 class EulerTour:
-    def __init__(self, N, node, start = 0):
-        self.N = N 
-        self.node = node 
-        self.info_index = [
-            {
-                'depth':None, 
-                'in': None, 
-                'out': None
-            } 
-            for _ in range(N)
-        ]
-        self.step = 0
-        self._dfs_index(start)
-        self.info_step = [
-            {
-                'now': None, 
-                'in_v_cost': None, 
-                'in_e_cost': None, 
-                'depth': None
-            }
-            for _ in range(self.step)
-        ]
-        self._initialize_step()
-        self._dfs_step(start)
+    def __init__(self, N, node, vertex_cost = False):
+        '''
+        【コンストラクタ】
+            node[v] = [(nx, i), ...] vとnxにコストiの辺を張る
+            vertex_cost[v] = a 頂点vにコストaを与える
 
-        # LCA
-        depths = [self.info_step[i]['depth'] for i in range(self.step)]
-        self.depth_rmq = RMQ(depths)
+        【メソッド】
+            lca(u, v)                 : u, vの最近共通祖先
+            root_path_edge_length(v)  : 根からxまでの距離を求める
+            root_path_vertex_cost(v)  : 根からxまでの頂点のコストの総和を求める
+            uv_path_edge_length(u, v) : uからvまでの距離を求める
+            uv_path_vertex_cost(u, v) : uからvまでの頂点のコストの総和を求める
+            update_edge(u, v, w)      : uとvをつなぐ辺のコストをwにする
+            update_vertex(v, w)       : 頂点vのコストをwにする
+            print()                   : オイラーツアー表示
+        '''
+        self.N = N
 
-        #subtree_nodes_cost
-        nodes = []
-        for i in range(self.step):
-            _in_v_cost = self.info_step[i]['in_v_cost']
-            if _in_v_cost == None: _in_v_cost = 0
-            nodes.append(_in_v_cost)
-        self.nodes_rsq = RSQ(nodes)
+        if vertex_cost == False: vertex_cost = [0] * N
 
-        #subtree_edges_cost 
-        edges = []
-        for i in range(self.step):
-            _in_e_cost = self.info_step[i]['in_e_cost']
-            if _in_e_cost == None: _in_e_cost = 0
-            edges.append(_in_e_cost)
-        self.edges_rsq = RSQ(edges)
-
-    def get_lca(self, x, y):
-        L = min(self.info_index[x]['in'], self.info_index[y]['in'])
-        R = max(self.info_index[x]['out'], self.info_index[y]['out'])
-        idx = self.depth_rmq.query(L, R)[1]
-        return self.info_step[idx]['now']
-
-    def get_subtree_nodes_cost(self, x):
-        L = self.info_index[x]['in']
-        R = self.info_index[x]['out']
-        return self.nodes_rsq.query(L, R - 1)
-
-    def get_subtree_edges_cost(self, x):
-        L = self.info_index[x]['in']
-        R = self.info_index[x]['out']
-        return self.edges_rsq.query(L + 1, R - 1)
-
-    def _initialize_step(self): self.step = 0
-    def _add_step(self): self.step += 1
-
-    def _dfs_index(self, x, p = -1, depth = 0):
-        self.info_index[x]['depth'] = depth
-        self.info_index[x]['in'] = self.step
-        self._add_step()
-        for nx, _ in self.node[x]:
-            if nx == p: continue
-            self._dfs_index(nx, x, depth + 1)
-            self._add_step()
+        start = 0; time = 0
+        EDGE_ORDER = []
+        DEPTH_ORDER = []
+        VERTEX_COST_ORDER = []
+        EDGE_COST_ORDER = []
+        now_depth = -1
         
-        self.info_index[x]['out'] = self.step
+        IN = [-1] * N
+        OUT = [-1] * N
+        que = [~start, start]
+        EDGE_COST = [0] * N
+        parents = [-1] * N
+        while que:
+            v = que.pop()
+            now_depth += 1 if v >= 0 else -1
+            if v >= 0:
+                IN[v] = time
+                for nx, edge_cost in node[v][::-1]:
+                    if IN[nx] != -1: continue
+                    EDGE_COST[nx] = edge_cost
+                    que.extend([~nx, nx])
+                    parents[nx] = v
+                EDGE_ORDER.append(v)
+                VERTEX_COST_ORDER.append(vertex_cost[v])
+                EDGE_COST_ORDER.append(EDGE_COST[v])
+            else:
+                OUT[~v] = time
+                EDGE_ORDER.append(-~v)
+                VERTEX_COST_ORDER.append(-vertex_cost[~v])
+                EDGE_COST_ORDER.append(-EDGE_COST[~v])
 
-    def _dfs_step(self, x, p = -1, depth = 0, cost = 0):
-        self.info_step[self.step] = {
-            'now': x, 
-            'in_v_cost': x, 
-            'in_e_cost': cost, 
-            'depth': depth
-        }
-        self._add_step()
-        for nx, c in self.node[x]:
-            if nx == p: continue
-            self._dfs_step(nx, x, depth + 1, c)
-            self.info_step[self.step] = {
-                'now': x, 
-                'in_v_cost': None, 
-                'in_e_cost': None, 
-                'depth': depth
-            }
-            self._add_step()
+            DEPTH_ORDER.append(now_depth)
+            time += 1
 
-    def verbose(self):
-        print('INDEX', *self.info_index, sep = '\n')
-        print('STEP', *self.info_step, sep = '\n')
+        self.IN = IN
+        self.OUT = OUT
+        self.EDGE_ORDER = EDGE_ORDER
+        self.DEPTH_ORDER = DEPTH_ORDER
+        self.VERTEX_COST_ORDER = VERTEX_COST_ORDER
+        self.EDGE_COST_ORDER = EDGE_COST_ORDER
+
+        self.edge_bit = BIT(len(EDGE_COST_ORDER))
+        for i in range(len(EDGE_COST_ORDER)):
+            self.edge_bit.add(i + 1, EDGE_COST_ORDER[i])
+
+        self.vertex_bit = BIT(len(VERTEX_COST_ORDER))
+        for i in range(len(VERTEX_COST_ORDER)):
+            self.vertex_bit.add(i + 1, VERTEX_COST_ORDER[i])
+
+        self.depth_rmq = RMQ(DEPTH_ORDER)
+        self.parents = parents
+        self.vertex_cost = vertex_cost
+
+    def lca(self, x, y):
+        l = min(self.IN[x], self.IN[y])
+        r = max(self.OUT[x], self.OUT[y])
+        idx = self.depth_rmq.query(l, r)
+        edge = self.EDGE_ORDER[idx]
+        if edge < 0:
+            lca = self.parents[-edge]
+        else:
+            lca = edge
+
+        return lca
+    
+    # 根からxまでの距離
+    def root_path_edge_length(self, x):
+        # 辺の合計
+        return self.edge_bit.sum(self.IN[x] + 1)
+    
+    # 根からxまでの頂点のコストの総和
+    def root_path_vertex_cost(self, x):
+        return self.vertex_bit.sum(self.IN[x] + 1)
+    
+    # uからvまでの距離
+    def uv_path_edge_length(self, u, v):
+        return self.root_path_edge_length(u) + self.root_path_edge_length(v) - 2 * self.root_path_edge_length(self.lca(u, v))
+
+    # uからvまでの頂点のコストの総和
+    def uv_path_vertex_cost(self, u, v):
+        v_lca = self.lca(u, v)
+        return self.vertex_cost[v_lca] + self.root_path_vertex_cost(u) + self.root_path_vertex_cost(v) - 2 * self.root_path_vertex_cost(v_lca)
+    
+    # uとwをつなぐ辺のコストをwにする
+    def update_edge(self, u, v, w): 
+        if self.IN[u] > self.IN[v]: u, v = v, u
+        self.edge_bit.update(self.IN[v] + 1, w)
+        self.edge_bit.update(self.OUT[v] + 1, -w)
+        self.EDGE_COST_ORDER[self.IN[v]] = w
+        self.EDGE_COST_ORDER[self.OUT[v]] = -w
+
+    # 頂点vのコストをwにする
+    def update_vertex(self, v, w):
+        self.vertex_bit.update(self.IN[v] + 1, w)
+        self.vertex_bit.update(self.OUT[v] + 1, -w)
+        self.VERTEX_COST_ORDER[self.IN[v]] = w
+        self.VERTEX_COST_ORDER[self.OUT[v]] = -w
+
+    def print(self):
+        '''
+            頂点iの根に近い辺をi
+                ↓の時 : +i
+                ↑の時 : -i
+        '''
+        print("[NODE]", " ".join(map(lambda x: str(x).rjust(3), range(self.N))))
+        print("[ IN ]", " ".join(map(lambda x: str(x).rjust(3), self.IN)))
+        print("[ OUT]", " ".join(map(lambda x: str(x).rjust(3), self.OUT)))
+        print()
+        print("[ TIME]", " ".join(map(lambda x: str(x).rjust(3), range(len(self.EDGE_ORDER)))))
+        print("[ EDGE]", " ".join(map(lambda x: str(x).rjust(3), self.EDGE_ORDER)))
+        print("[DEPTH]", " ".join(map(lambda x: str(x).rjust(3), self.DEPTH_ORDER)))
+        print("[VCOST]", " ".join(map(lambda x: str(x).rjust(3), self.VERTEX_COST_ORDER)))
+        print("[ECOST]", " ".join(map(lambda x: str(x).rjust(3), self.EDGE_COST_ORDER)))

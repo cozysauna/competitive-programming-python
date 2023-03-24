@@ -20,7 +20,7 @@
         print()         : Aを表示
 '''
 
-class BIT():
+class BIT:
     def __init__(self, N):
         self.N = N
         self.data = [0] * (N + 1)
