@@ -85,6 +85,7 @@
 
 ## Geometry
   - 偏角ソート (degree_sort.py)
+  - 多角形の内包判定 (in_convex_polygon.py)
   - 二点を通る直線の式 (line_equation.py)
   - 点と直線の距離 (point_line_distance.py)
   - 回転 (rot.py)
