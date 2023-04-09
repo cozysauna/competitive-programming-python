@@ -78,6 +78,7 @@
   - 進数変換 (負の数対応) (to_int.py)
 
 ## String
+  - kmp法 (kmp.py)
   - レーベンシュタイン距離・編集距離 (levenshtein_distance.py)
   - ローリングハッシュ (rollinghash.py) 
   - ランレングス圧縮 (run_length_encoding.py) 
