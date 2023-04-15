@@ -1,10 +1,14 @@
 def mat_pow(A, n):
-    if not n: 
-        identity_matrix = [[1 if i == j else 0 for i in range(len(A))] for j in range(len(A))]
-        return identity_matrix
+    e = 1
+    L = len(A)
+    ret = [[0] * L for _ in range(L)]
+    for i in range(L):
+        ret[i][i] = e
 
-    m = mat_pow(A, n//2)
-    if n % 2:
-        return mat_mul(A, mat_mul(m, m))
-    else:
-        return mat_mul(m, m)
+    while n > 0:
+        if n & 1:
+            ret = mat_mul(A, ret)
+        A = mat_mul(A, A)
+        n >>= 1
+
+    return ret
