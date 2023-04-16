@@ -10,3 +10,4 @@ def mat_mul(A, B):
                 mat[i][j] += A[i][k] * B[k][j]
 
     return mat 
+    
