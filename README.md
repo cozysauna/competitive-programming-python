@@ -56,6 +56,7 @@
   - ビットセット (bitset.py)
   - カタラン数 (catalan_number.py)
   - 座標圧縮 (compress.py)
+  - 数え上げ (count_up.py)
   - 中国剰余定理 (crt.py)
   - 累積和 (cumsum.py)
   - 二次元累積和 (cumsum2.py)
