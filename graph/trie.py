@@ -20,7 +20,7 @@ class Trie:
         else:
             now.word_endpoint = True
 
-    # wordが含まれるか、wordを接頭辞に持つ単語の数
+    # (wordが含まれるか、wordを接頭辞に持つ単語の数)を返す
     def search(self, word):
         now = self.root
         for alp in word:
