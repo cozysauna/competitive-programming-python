@@ -1,5 +1,9 @@
 from functools import cmp_to_key
 def degree_sort(points):
+    # 原点にある点はソートできないので予め削除する
+    for x, y in points:
+        assert (x, y) != (0, 0) 
+
     def quadrant(x, y):
         if x >= 0 and y >= 0: return 1
         if x <= 0 and y >= 0: return 2
