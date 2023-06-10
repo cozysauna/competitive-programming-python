@@ -1,9 +1,21 @@
-submit = True
-output_file_name = 'out.txt'
-result = []
+from time import time; START = time()
+from random import random, sample, choice, randrange
 
-if submit:
-    print(''.join(map(str, result)))
-else:
-    outf = open(output_file_name, 'w')
-    print(''.join(result), file = outf)
+submit = False
+output_file_name = 'out.txt'
+result = ''
+
+
+def solve():
+    _output()
+
+def _output():
+    if submit:
+        print(result)
+    else:
+        # print("SCORE ", score)
+        outf = open(output_file_name, 'w')
+        print(result, file = outf)
+
+
+if __name__ == "__main__": solve()
