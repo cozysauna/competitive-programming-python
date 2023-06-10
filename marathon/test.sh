@@ -4,7 +4,7 @@
 # 実行ファイルでは最後にprint("SCORE", score)のように出力を行う
 
 #テストの数
-N=2
+N=5
 #実行ファイル
 excecute_file=main.py 
 
