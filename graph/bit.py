@@ -52,7 +52,7 @@ class BIT:
     def more_than_x(self, x): return self.lower_bound(self.sum(x - 1) + 1)
 
     def lower_bound(self, w):
-        if w <= 0: return None
+        if w <= 0: return 1
         if w > self.get_all_sum(): return None
         i = 0
         size = 1 << self.N.bit_length()
