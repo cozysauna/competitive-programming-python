@@ -34,6 +34,7 @@
   - セグメント木 (segtree.py)
   - 二次元セグメント木 (segtree_2d.py)
   - Slope Trick (slope_trick.py)
+  - Sum Cnt Bit (sum_cnt_bit.py)
   - トポロジカルソート (topological_sort.py)
   - 木の直径 (tree_diameter.py)
   - Trie木 (trie.py)
