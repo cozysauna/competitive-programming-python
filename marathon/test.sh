@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 # ./in/0000.txtのようにテストデータを保存する
-# 実行ファイルでは最後にprint("SCORE", score)のように出力を行う
 
 #テストの数
 N=5
@@ -25,12 +24,10 @@ fi
 for ((i=0;i<N;i++))
 do 
     file_number=$(printf "%04d\n" "${i}") 
+    echo;
     echo TEST $i is working
     test_file_name=in/$file_number.txt
-    eval python3 .test.py < $test_file_name >> $logfile
-    eval tail -1 $logfile
+    eval python3 .test.py < $test_file_name
 done
 
-eval cat $logfile | awk 'BEGIN{print "******* 結果 *******"}{total_score+=$2;print "TEST", NR, "SCORE",$2}END{print "AVERAGE", total_score / NR}'
-
-
+eval cat $logfile | awk 'BEGIN{OFMT="%.16f"; print "******* 結果 *******"}{total_score+=$1;print "TEST", NR, "SCORE", $1}END{print "AVERAGE", int(total_score / NR)}'
