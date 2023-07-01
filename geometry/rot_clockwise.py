@@ -1,0 +1,1 @@
+def rot_clockwise(A): return [*map(list, zip(*A[::-1]))]

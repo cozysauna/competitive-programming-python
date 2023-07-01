@@ -1,1 +1,0 @@
-def rot(A): return [*map(list, zip(*A[::-1]))]
