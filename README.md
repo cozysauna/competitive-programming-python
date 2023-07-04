@@ -1,6 +1,7 @@
 # 競技プログラミング用ライブラリ（Python）
 
 ## Array
+  - マージソート(merge_sort.py)
   - ソート配列の二分探索 (sorted_array.py)    
 
 ## Prime
