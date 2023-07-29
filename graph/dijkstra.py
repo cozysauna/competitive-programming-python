@@ -1,4 +1,4 @@
-class Dikstra:
+class Dijkstra:
     def __init__(self, N, node):
         self.node = node 
         self.N = N 
