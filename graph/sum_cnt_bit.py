@@ -77,11 +77,13 @@ class SumCntBIT:
         return self.kth_smallest_value(self.all_cnt - k + 1)
 
     def kth_smallest_sum(self, k):
+        k = min(k, self.all_cnt)
         i = self._lower_bound(self.cnt_data, k)
         cnt = self._sum(self.cnt_data, i)
         return self._sum(self.sum_data, i) - self.original[i] * (cnt - k)
 
     def kth_biggest_sum(self, k):
+        k = min(k, self.all_cnt)
         return self.all_sum - self.kth_smallest_sum(self.all_cnt - k)
 
     def print(self):
