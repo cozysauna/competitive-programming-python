@@ -81,6 +81,7 @@
   - 循環小数 (reccuring_decimal.py)
   - 部分集合 (subset.py)
   - 進数変換 (負の数対応) (to_int.py)
+  - 2組のペア (two_pairs.py)
 
 ## String
   - kmp法 (kmp.py)
