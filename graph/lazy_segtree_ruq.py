@@ -6,7 +6,7 @@ class RUQ:
         self.e = e
         self.height = (N - 1).bit_length()
         self.num = 1 << self.height
-        self.data = [0] * (2 * self.num)
+        self.data = [e] * (2 * self.num)
         self.lazy = [None] * (2 * self.num)
 
     def gindex(self, l, r):
